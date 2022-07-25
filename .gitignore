@@ -1,5 +1,5 @@
 .env
-app_steps
+/app_steps
 
 # compiled output
 /vendor
