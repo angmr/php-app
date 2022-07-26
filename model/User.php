@@ -74,7 +74,7 @@ class User {
 
     public function createUser($data) {
         $username = $data->username;
-        $password = $data->password;
+        $password = password_hash($data->password, PASSWORD_DEFAULT);
         $user_category_identifier = $data->user_category->identifier;
         $user_category_name = $data->user_category->name;
         $name = $data->name;
@@ -210,12 +210,9 @@ class User {
             'username'=> $username
         ]);
 
-        // return json_encode($findUser->password);
-
-        if( $findUser && isset( $password )){
+        if( $findUser && isset($password)){
             try {
-
-                if ($password==$findUser->password) {
+                if (password_verify($password, $findUser->password)) {
                     return $this->returnValue("",'true');
                 }   
                 else 
