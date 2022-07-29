@@ -1,9 +1,9 @@
 <?php
 
 require dirname(__FILE__, 2).'/vendor/autoload.php';
-
 include dirname(__FILE__, 2).'/connect.php';
 
+// Uncomment for localhost running
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__FILE__, 2));
 $dotenv -> load();
 
@@ -16,14 +16,12 @@ $connection = new Connection($MDB_USER, $MDB_PASS, $ATLAS_CLUSTER_SRV);
 $collection = $connection -> connect_to_department();
 $data = $collection -> find() -> toArray();
 
-//print_r($data);
-
 ?>
 
 <html>
     <head>
-        <title>Department</title>
-        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+        <title>Departments</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     </head>
     <body>
         <table border="1px">
@@ -31,24 +29,24 @@ $data = $collection -> find() -> toArray();
                 <th>Διεύθυνση</th>
                 <th>Αναγνωριστικό</th>
                 <th>Τμήματα</th>
-                <th>Κατηγορίες<th>
+                <th>Κατηγορίες</th>
             </tr>
             <?php
-                foreach($data as $value){
+                foreach ($data as $value){
                     echo "<tr>";
                         echo "<td>".$value['name']."</td>";
-                        echo "<td>".$value['identifier']."</td";
+                        echo "<td>".$value['identifier']."</td>";
                         echo "<td>";
-                            foreach($value["subdepartment"] as $valuex){
-                                echo $valuex["name"]."<br>";
+                            foreach ($value["subdepartment"] as $valueX){
+                                echo $valueX["name"]."<br>";
                             }
                         echo "</td>";
                         echo "<td>";
-                            foreach($value["categories"] as $valuex){
-                                echo $valuex["name"]." (".$valuex["subdepartment_id"].")"."<br>";
+                            foreach ($value["categories"] as $valueX){
+                                echo $valueX["name"]."(".$valueX["subdepartment_id"].")<br>";
                             }
                         echo "</td>";
-                    echo "</tr>";
+                    echo "</tr>";    
                 }
             ?>
         </table>

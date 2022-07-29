@@ -1,19 +1,6 @@
+<?php include 'header-script.php'; ?>
+
 <?php
-    require dirname(__FILE__,2).'/vendor/autoload.php';
-
-    include dirname(__FILE__,2).'/connect.php';
-    include dirname(__FILE__,2).'/helper_files/GeneralFunctions.php';
-    include dirname(__FILE__,2).'/model/Department.php';
-    include dirname(__FILE__,2).'/model/Categories.php';
-    
-    // Uncomment for localhost running
-    $dotenv = Dotenv\Dotenv::createImmutable(dirname(__FILE__,2));
-    $dotenv->load();
-
-    $MDB_USER = $_ENV['MDB_USER'];
-    $MDB_PASS = $_ENV['MDB_PASS'];
-    $ATLAS_CLUSTER_SRV = $_ENV['ATLAS_CLUSTER_SRV'];
-
     function test_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
@@ -28,11 +15,6 @@
         $result = $categories->createCategories($data);
         return $result;
     }
-    
-    $connection = new Connection($MDB_USER, $MDB_PASS, $ATLAS_CLUSTER_SRV);
-    $department = new Department($connection);
-    $categories = new Categories($connection);
-    header('Content-Type: text/html; charset=utf-8');
 
     // define variables and set to empty values
     $frmDepartmentErr = $frmSubdepartmentErr = $frmCategoriesErr = "";
@@ -89,46 +71,41 @@
     $allDepartments = json_decode($allDepartments['data'],true);
 ?>
 
-<!DOCTYPE HTML>  
-<html>
-    <head>
-        <title>Category</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <style>
-            .error {color: #FF0000;}
-        </style>
-    </head>
-    <body>  
-
+<?php include 'header.php' ?>;
+    <div class="container mt-4">  
         <h2>Εισαγωγή νέου Category</h2>
         <!-- <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?> -->
-        <p><span class="error">* required field</span></p>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-            <select name="frmDepartment" id="frmDepartment" onchange="findSubdepartment(this)">
-                <option value="" default>Επιλέξτε Διεύθυνση</option>
-                <?php 
-                    foreach($allDepartments as $value) {
-                        echo '<option value="'.$value['_id']['$oid']."-".$value['identifier'].'">'.$value['name']."</option>";
-                    } 
-                ?>
-            </select>
-            <span class="error">* <?php echo $frmDepartmentErr;?></span>
-            <br><br>
-            <select name="frmSubdepartment" id="frmSubdepartment">
-                <option value="" default>Επιλέξτε Τμήμα</option>
-            </select>
-            <span class="error">* <?php echo $frmSubdepartmentErr;?></span>
-            <br><br>
-            Name: <input type="text" name="frmCategories" value="<?php echo $frmCategories;?>">
-            <span class="error">* <?php echo $frmCategoriesErr;?></span>
-            <br><br>
-            <input type="submit" name="submit" value="Submit">  
+        <p><span class="text-danger">* required field</span></p>
+
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <div class="mb-3">
+                <label for="frmDepartment" class="form-label">Επιλέξτε Διεύθυνση</label>
+                <select name="frmDepartment" id="frmDepartment" onchange="findSubdepartment(this)">
+                    <option value="" default>Επιλέξτε Διεύθυνση</option>
+                    <?php 
+                        foreach($allDepartments as $value) {
+                            echo '<option value="'.$value['_id']['$oid']."-".$value['identifier'].'">'.$value['name']."</option>";
+                        }
+                    ?>
+                </select>
+                <span class="text-danger">* <?php echo $frmDepartmentErr;?></span>
+            </div>
+            <div class="mb-3">
+                <label for="frmSubdepartment" class="form-label">Επιλέξτε Τμήμα</label>
+                <select name="frmSubdepartment" id="frmSubdepartment">
+                    <option value="" default>Επιλέξτε Τμήμα</option>
+                </select>
+                <span class="text-danger">* <?php echo $frmSubdepartmentErr;?></span>
+            </div>
+            <div class="mb-3 form-check">
+                <label for="frmCategories" class="form-label">Name</label>
+                <input type="text" class="form-control" id="frmCategories" name="frmCategories" value="<?php echo $frmCategories;?>">
+                <span class="text-danger">* <?php echo $frmCategoriesErr;?></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        
         <hr>
-        
-        <table border="1px">
+        <table class="table table-striped">
             <tr>
                 <th>Διεύθυνση</th>
                 <th>Αναγνωριστικό</th>
@@ -156,15 +133,17 @@
         </table>
         <script>
             function findSubdepartment(dvalue){
+
                 var value = dvalue.value;
                 value = value.split("-");
                 url = `/subdepartment/${value[0]}/list`
-                //console.log(value,url);
+                // console.log(value,url);
 
                 $.getJSON(url,function(data){
+
                     data = JSON.parse(data['data']);
                     subdepartment = data['subdepartment'];
-                    console.log(subdepartment);
+                    // console.log(subdepartment);
                     
                     $('#frmSubdepartment').empty();
                     $('#frmSubdepartment').append($('<option>', {
@@ -184,5 +163,5 @@
                 })
             }
         </script>
-    </body>
-</html>
+    </div>
+<?php include 'footer.php' ?>;
