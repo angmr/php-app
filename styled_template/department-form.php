@@ -1,48 +1,61 @@
 <?php include 'header-script.php'; ?>
 
 <?php
-function saveDepartment($data){
-    global $department;
+    function saveDepartment($data){
+        global $department;
 
-    $data_to_save = json_decode(json_encode($data));
-    $result = $department -> createDepartment($data_to_save);
-    
-    return $result;
-}
+        $data_to_save = json_decode(json_encode($data));
+        $result = $department -> createDepartment($data_to_save);
+        
+        return $result;
+    }
 
-$nameErr = $identifierErr = "";
-$name = $identifier = "";
+    function deleteDepartment($data){
+        global $department;
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (empty($_POST["name"])){
-        $nameErr = "Name is required";
-    } else {
-        if(!preg_match("/^[a-zA-Z\p{Greek}\s]+$/u", $_POST["name"])){
-            $nameErr = "Invalid name format";
+        $result = $department -> deleteDepartment($data);
+        return $result;
+    }
+
+    $nameErr = $identifierErr = "";
+    $name = $identifier = "";
+
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+        if (empty($_POST["name"])){
+            $nameErr = "Name is required";
+        } else {
+            if(!preg_match("/^[a-zA-Z\p{Greek}\s]+$/u", $_POST["name"])){
+                $nameErr = "Invalid name format";
+            }
+        }
+        if (empty($_POST["identifier"])){
+            $identifierErr = "Identifier is required";
+        } else {
+            if (!is_numeric($_POST["identifier"])){
+                $identifierErr = "Invalid identifier format: only digits allowed";
+            }
+        }
+
+        if(empty($nameErr) && empty($identifierErr)){
+            $data = array(
+                'identifier' => $_POST["identifier"],
+                'name' => $_POST["name"]
+            );
+            $result = saveDepartment($data);
         }
     }
-    if (empty($_POST["identifier"])){
-        $identifierErr = "Identifier is required";
-    } else {
-        if (!is_numeric($_POST["identifier"])){
-            $identifierErr = "Invalid identifier format: only digits allowed";
+
+    if ($_SERVER['REQUEST_METHOD'] == "GET"){
+        if (isset($_GET['id']) && !empty($_GET['id'])){
+            $id = $_GET['id'];
+            $result = deleteDepartment($id);
         }
     }
 
-    if(empty($nameErr) && empty($identifierErr)){
-        $data = array(
-            'identifier' => $_POST["identifier"],
-            'name' => $_POST["name"]
-        );
-        $result = saveDepartment($data);
-    }
-}
-
-$data = json_decode($department -> showDepartments(), true);
-$data = json_decode($data['data'], true);
-
+    $data = json_decode($department -> showDepartments(), true);
+    $data = json_decode($data['data'], true);
 ?>
-
 
 <?php include 'header.php'; ?>
 
@@ -72,7 +85,8 @@ $data = json_decode($data['data'], true);
                 <th>Διεύθυνση</th>
                 <th>Αναγνωριστικό</th>
                 <th>Τμήματα</th>
-                <th>Κατηγορίες<th>
+                <th>Κατηγορίες</th>
+                <th>Διαδικασίες</th>
             </tr>
             <?php
                 foreach ($data as $value){
@@ -88,6 +102,14 @@ $data = json_decode($data['data'], true);
                             foreach ($value["categories"] as $valueX){
                                 echo $valueX["name"]."<br>";
                             }
+                        echo "</td>";
+                        echo "<td>";
+                ?>
+                        <form method="delete" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                            <input type="hidden" name="id" value="<?php echo $value['_id']['$oid']; ?>">
+                            <input type="submit" name="submit" value="Delete">
+                        </form>
+                <?php 
                         echo "</td>";
                     echo "</tr>";
                 }
