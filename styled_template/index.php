@@ -3,8 +3,9 @@ require dirname(__FILE__,2).'/vendor/autoload.php';
 
 include dirname(__FILE__,2).'/connect.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(dirname(__FILE__,2));
-$dotenv->load();
+// Uncomment for localhost running
+// $dotenv = Dotenv\Dotenv::createImmutable(dirname(__FILE__,2));
+// $dotenv->load();
 
 $MDB_USER = $_ENV['MDB_USER'];
 $MDB_PASS = $_ENV['MDB_PASS'];
