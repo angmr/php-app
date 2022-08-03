@@ -60,7 +60,7 @@ class User {
         };
     }
 
-    
+
     public function showUser($id) {
         if( isset( $id )) {
             try {
@@ -219,6 +219,35 @@ class User {
             return $this->returnValue("",'false');
     }
 
+    /**
+     * @OA\Post(
+     *     path="/user/login",
+     *     description="login a user",
+     *     operationId="loginUser",
+     *     tags={"User"},
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(property="username",type="string"),
+     *                 @OA\Property(property="password",type="string"),
+     *                example={"username": "akosta", "password": "1234"}
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Retuns a json object with true or false value to field success",
+     *         @OA\JsonContent(
+     *             oneOf={
+     *                 @OA\Schema(type="boolean")
+     *             },
+     *             @OA\Examples(example="False bool", value={"success": false}, summary="A false boolean value."),
+     *             @OA\Examples(example="True bool", value={"success": true}, summary="A true boolean value."),
+     *         )
+     *     )
+     * )
+     */
      public function loginUser($data) {
         $username = $data->username;
         $password = $data->password;
