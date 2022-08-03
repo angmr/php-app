@@ -35,6 +35,7 @@ class Department {
      *   description="List departments",
      *   operationId="showDepartments",
      *   tags={"Department"},
+     *   security={{"bearerAuth":{}}},
      *   @OA\Response(
      *     response="200",
      *     description="A list with departments"
@@ -159,7 +160,29 @@ class Department {
         $identifier = $data->identifier;
         $name = $data->name;
 
-        if( isset( $identifier ) && isset($name)) {
+        $checked = false;
+
+        $result = $this -> collection -> findOne([
+            'identifier' => intval($identifier)
+        ]);
+
+        if ($result):
+            return $this -> generalFunctions -> returnValue("This identifier already exists.", false);
+        else:
+            $checked = true;
+        endif;
+
+        $result = $this -> collection -> findOne([
+            'name' => $name
+        ]);
+
+        if ($result):
+            return $this -> generalFunctions -> returnValue("This name already exists.", false);
+        else:
+            $checked = true;
+        endif;
+
+        if( isset( $identifier ) && isset($name) && $checked) {
             try {
                 $result = $this->collection->insertOne( [
                     'identifier' => intval($identifier), 

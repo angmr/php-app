@@ -3,7 +3,7 @@
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json; charset=utf-8');
 
-include "SharedFunctions.php";
+//include "helper_files/GeneralFunctions.php";
 
 use OpenApi\Annotations as OA;
 

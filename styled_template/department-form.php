@@ -10,6 +10,15 @@
         return $result;
     }
 
+    function updateDepartment($data){
+        global $department;
+
+        $data_to_save = json_decode(json_encode($data));
+        $result = $department -> updateDepartment($data_to_save);
+
+        return $result;
+    }
+
     function deleteDepartment($data){
         global $department;
 
@@ -21,6 +30,12 @@
     $name = $identifier = "";
 
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+        if(empty($_POST['id'])){
+            $update = false;
+        } else {
+            $update = true;
+        }
 
         if (empty($_POST["name"])){
             $nameErr = "Name is required";
@@ -38,11 +53,30 @@
         }
 
         if(empty($nameErr) && empty($identifierErr)){
-            $data = array(
-                'identifier' => $_POST["identifier"],
-                'name' => $_POST["name"]
-            );
-            $result = saveDepartment($data);
+
+            if ($update) {
+                $data = array(
+                    '_id' => $_POST['id'],
+                    'identifier' => $_POST['identifier'],
+                    'name' => $_POST['name']
+                );
+
+                $result = updateDepartment($data);
+
+            } else {
+                $data = array(
+                    'identifier' => $_POST["identifier"],
+                    'name' => $_POST["name"]
+                );
+
+                $result = saveDepartment($data);
+                $result = json_decode($result, true);
+                if (!$result['success']){
+                    $alert = trim($result['data'], '"');
+                } else {
+                    $alert = "";
+                }
+            }
         }
     }
 
@@ -61,6 +95,16 @@
 
     <div class="container mt-4">
         <h2>Εισαγωγή νέας διεύθυνσης</h2>
+        <?php
+            if (isset($alert) && !empty($alert)) {
+        ?>
+            <div class="alert alert-danger" role="alert">
+            <?php echo $alert; ?>
+            </div>
+        <?php
+            }
+        ?>
+        
 
         <p><span class="text-danger">* required field</span></p>
 
@@ -75,6 +119,7 @@
                 <input type="text" class="form-control" id="name" name="name" value="<?php echo $name; ?>">
                 <span class="text-danger">*<?php echo $nameErr; ?></span>
             </div>
+            <input type='hidden' name='id' id='id' value=''>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
@@ -104,10 +149,11 @@
                             }
                         echo "</td>";
                         echo "<td>";
-                ?>
+                ?>      
+                        <button class="btn btn-primary" onclick="loadForm(<?php echo '\''.$value['_id']['$oid'].'\',\''.$value['name'].'\',\''.$value['identifier'].'\''?>)">Update</button>
                         <form method="delete" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                             <input type="hidden" name="id" value="<?php echo $value['_id']['$oid']; ?>">
-                            <input type="submit" name="submit" value="Delete">
+                            <input class="btn btn-danger" type="submit" name="submit" value="Delete">
                         </form>
                 <?php 
                         echo "</td>";
@@ -116,4 +162,12 @@
             ?>
         </table>
     </div>
+    <script>
+        function loadForm(id, name, identifier){
+            console.log(id, name, identifier);
+            $('#name').val(name);
+            $('#identifier').val(identifier);
+            $('#id').val(id);
+        }
+    </script>
 <?php include 'footer.php'; ?>

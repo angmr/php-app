@@ -21,6 +21,22 @@ class User {
         }
     }
     
+    /**
+     * @OA\Get(
+     *   path="/user/list",
+     *   description="List departments",
+     *   operationId="showUsers",
+     *   tags={"User"},
+     *   @OA\Response(
+     *     response="200",
+     *     description="A list with departments"
+     *   ),
+     *   @OA\Response(
+     *     response="404",
+     *     description="Error"
+     *   )
+     * )
+     */
     public function showUsers() {
         try {
             $result = $this->collection->find()->toArray();
@@ -44,6 +60,7 @@ class User {
         };
     }
 
+    
     public function showUser($id) {
         if( isset( $id )) {
             try {
@@ -213,7 +230,14 @@ class User {
         if( $findUser && isset($password)){
             try {
                 if (password_verify($password, $findUser->password)) {
-                    return $this->returnValue("",'true');
+                    $data = json_encode(array(
+                        "success" => true,
+                        "username" => $username,
+                        "permission" => "editor",
+                        "authorizations" => "xxx"
+                    ));
+                    return $data;
+                    //return $this->returnValue("",'true');
                 }   
                 else 
                     return $this->returnValue("",'false');
