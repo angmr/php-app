@@ -47,7 +47,7 @@ use OpenApi\Annotations as OA;
  * )
  * 
  * @OA\Server(
- *     url="http://localhost/",
+ *     url="https://cdng-announcements-app.herokuapp.com",
  *     description="API Server")
  * 
  * @OA\Components(
