@@ -135,7 +135,6 @@ $data = json_decode($data['data'], true);
             <br><br>
             <input type="submit" name="Submit" value="Submit">
             <input type="hidden" name="id" id="id" value="">
-            <input type="submit" name="Submit" value="Submit">
         </form>
 
         <hr>
