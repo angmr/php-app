@@ -2,10 +2,11 @@
     require __DIR__.'/vendor/autoload.php';   // Include Composer's autoloader
 
     // Uncomment for localhost running
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
+    // $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    // $dotenv->load();
 
     include 'connect.php';
+    include 'jwt_authenticate.php';
 
     include 'model/Department.php';
     include 'model/Subdepartment.php';
@@ -15,8 +16,6 @@
     include 'model/Roles.php';
     include 'model/Subscription.php';
     include 'model/Announcement.php';
-
-    include 'jwt_authenticate.php';
 
     $MDB_USER = $_ENV['MDB_USER'];
     $MDB_PASS = $_ENV['MDB_PASS'];
@@ -52,14 +51,14 @@
         global $department;
         global $jwt;
 
-        $result = $jwt -> validateJWT();
-        $checkvalidation = json_decode($result);
+        // $result = $jwt -> validateJWT();
+        // $checkvalidation = json_decode($result);
 
-        if ($checkvalidation) {
+        // if ($checkvalidation) {
             $result = $department -> showDepartments();
             return $result;
-        } else
-            return $result;
+        // } else
+        //    return $result;
     });
 
     Route::add('/department/(.*)/list', function($id) {

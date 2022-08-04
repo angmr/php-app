@@ -50,7 +50,7 @@
         } else {
             $category_name = test_input($category_name);
             // check if name only contains letters and whitespace or Greek letters
-            if (!preg_match("/^[a-zA-Z\p{Greek}\s]+$/u",$category_name)) {
+            if (!preg_match("/^[a-zA-Z\p{Greek}\s]+$/u", $category_name)) {
                 $frmCategoriesErr = "Only letters and white space allowed";
             }
         }
@@ -85,8 +85,8 @@
         }
     }
 
-    $allDepartments = json_decode($department->showDepartments(),true);
-    $allDepartments = json_decode($allDepartments['data'],true);
+    $allDepartments = json_decode($department->showDepartments(), true);
+    $allDepartments = json_decode($allDepartments['data'], true);
 ?>
 
 <!DOCTYPE HTML>  

@@ -19,7 +19,7 @@
         <script>
             $(document).ready(function(){
                 $.ajax({
-                    url:'<herokulink>',
+                    url:'https://cdng-announcements-app.herokuapp.com//department/list',
                     type: 'get',
                     dataType: 'JSON'
                 })

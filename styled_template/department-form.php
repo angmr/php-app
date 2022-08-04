@@ -6,7 +6,6 @@
 
         $data_to_save = json_decode(json_encode($data));
         $result = $department -> createDepartment($data_to_save);
-        
         return $result;
     }
 
@@ -15,7 +14,6 @@
 
         $data_to_save = json_decode(json_encode($data));
         $result = $department -> updateDepartment($data_to_save);
-
         return $result;
     }
 
@@ -53,7 +51,6 @@
         }
 
         if(empty($nameErr) && empty($identifierErr)){
-
             if ($update) {
                 $data = array(
                     '_id' => $_POST['id'],
@@ -71,6 +68,7 @@
 
                 $result = saveDepartment($data);
                 $result = json_decode($result, true);
+
                 if (!$result['success']){
                     $alert = trim($result['data'], '"');
                 } else {
@@ -105,7 +103,6 @@
             }
         ?>
         
-
         <p><span class="text-danger">* required field</span></p>
 
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -139,13 +136,13 @@
                         echo "<td>".$value['name']."</td>";
                         echo "<td>".$value['identifier']."</td>";
                         echo "<td>";
-                            foreach ($value["subdepartment"] as $valueX){
-                                echo $valueX["name"]."<br>";
+                            foreach ($value["subdepartment"] as $value){
+                                echo $value["name"]."<br>";
                             }
                         echo "</td>";
                         echo "<td>";
-                            foreach ($value["categories"] as $valueX){
-                                echo $valueX["name"]."<br>";
+                            foreach ($value["categories"] as $value){
+                                echo $value["name"]."<br>";
                             }
                         echo "</td>";
                         echo "<td>";
