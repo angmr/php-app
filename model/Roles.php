@@ -76,24 +76,24 @@ class Roles {
                     ]
                 );
                 if ($result->getModifiedCount()==1)
-                    return $this->returnValue("",'true');
+                    return $this->generalFunctions->returnValue("",'true');
                 else 
-                    return $this->returnValue("",'false');
+                    return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in insert roles \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in insert roles \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in insert roles \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             };
         } else 
-            return $this->returnValue("",'false');
+            return $this->generalFunctions->returnValue("",'false');
     }
 
     
@@ -111,28 +111,28 @@ class Roles {
                     ]
                 );
                 if ($result->getModifiedCount()==1)
-                    return $this->returnValue("",'true');
+                    return $this->generalFunctions->returnValue("",'true');
                 else 
-                    return $this->returnValue("",'false');
+                    return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Exception\UnsupportedException $e){
                 error_log("Problem in delete roles \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in delete roles \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in delete roles \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in delete roles \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             };
         } else 
-            return $this->returnValue("",'false');
+            return $this->generalFunctions->returnValue("",'false');
     }
 
     
@@ -156,24 +156,24 @@ class Roles {
                     ]
                 );
                 if ($result->getModifiedCount()==1)
-                    return $this->returnValue("",'true');
+                    return $this->generalFunctions->returnValue("",'true');
                 else 
-                    return $this->returnValue("",'false');
+                    return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in update roles \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in update roles \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in update roles \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             };
         } else 
-            return $this->returnValue("",'false');    
+            return $this->generalFunctions->returnValue("",'false');    
     }
 }
 ?>

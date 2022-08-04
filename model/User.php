@@ -10,6 +10,7 @@ use OpenApi\Annotations as OA;
 class User {
 
     protected $collection;
+    protected $generalFunctions;
 
     public function __construct($connection) {
         try {
@@ -40,23 +41,23 @@ class User {
     public function showUsers() {
         try {
             $result = $this->collection->find()->toArray();
-            if (count($result)>0):
-                return $this->returnValue($result,'true');
+            if (count($result) > 0):
+                return $this->generalFunctions->returnValue($result,'true');
             else:
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             endif;
         }
         catch (MongoDB\Exception\UnsupportedException $e){
             error_log("Problem in find users \n".$e);
-            return $this->returnValue("",'false');
+            return $this->generalFunctions->returnValue("",'false');
         }
         catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
             error_log("Problem in find users \n".$e);
-            return $this->returnValue("",'false');
+            return $this->generalFunctions->returnValue("",'false');
         }
         catch (MongoDB\Driver\Exception\RuntimeException $e){
             error_log("Problem in find users \n".$e);
-            return $this->returnValue("",'false');
+            return $this->generalFunctions->returnValue("",'false');
         };
     }
 
@@ -68,25 +69,25 @@ class User {
                     '_id'=>new MongoDB\BSON\ObjectId($id)
                 ]);
                 if ($result):
-                    return $this->returnValue($result,'true');
+                    return $this->generalFunctions->returnValue($result,'true');
                 else:
-                    return $this->returnValue("",'false');
+                    return $this->generalFunctions->returnValue("",'false');
                 endif;
             }
             catch (MongoDB\Exception\UnsupportedException $e){
                 error_log("Problem in findOne user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in findOne user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in findOne user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
         } else 
-            return $this->returnValue("",'false'); 
+            return $this->generalFunctions->returnValue("",'false'); 
     }
 
     public function createUser($data) {
@@ -97,7 +98,7 @@ class User {
         $name = $data->name;
         $surname = $data->surname;
         $email = $data->email;
-        if( isset( $username ) && isset($password) && 
+        if (isset( $username ) && isset($password) && 
             isset($user_category_identifier) && isset($user_category_name) 
             && isset($name) && isset($surname) && isset($email) ) {
             try {
@@ -117,24 +118,24 @@ class User {
                     'subscription_list' => []
                 ] );
                 if ($result->getInsertedCount()==1)
-                    return $this->returnValue("",'true');
+                    return $this->generalFunctions->returnValue("",'true');
                 else 
-                    return $this->returnValue("",'false');
+                    return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in insert user category \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in insert user category \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in insert user category \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             };
         } else 
-            return $this->returnValue("",'false');
+            return $this->generalFunctions->returnValue("",'false');
     }
 
     public function deleteUser($id) {
@@ -144,28 +145,28 @@ class User {
                     '_id'=>new MongoDB\BSON\ObjectId($id)
                 ]);
                 if ($result->getDeletedCount()==1)
-                    return $this->returnValue("",'true');
+                    return $this->generalFunctions->returnValue("",'true');
                 else 
-                    return $this->returnValue("",'false');
+                    return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Exception\UnsupportedException $e){
                 error_log("Problem in delete user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in delete user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in delete user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in delete user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             };
         } else 
-            return $this->returnValue("",'false');
+            return $this->generalFunctions->returnValue("",'false');
     }
 
     public function updateUser($data) {
@@ -179,7 +180,7 @@ class User {
         $send_email = $data->send_email;
         $verified = $data->verified;
 
-        if( isset( $id ) && isset( $username ) && 
+        if (isset( $id ) && isset( $username ) && 
             isset($user_category_identifier) && isset($user_category_name) && 
             isset($name) && isset($surname) && isset($email)) {
             try {
@@ -199,24 +200,24 @@ class User {
                     ]
                 );
                 if ($result->getModifiedCount()==1)
-                    return $this->returnValue("",'true');
+                    return $this->generalFunctions->returnValue("",'true');
                 else 
-                    return $this->returnValue("",'false');
+                    return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in update user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in update user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in update user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             };
         } else 
-            return $this->returnValue("",'false');
+            return $this->generalFunctions->returnValue("",'false');
     }
 
     /**
@@ -256,7 +257,7 @@ class User {
             'username'=> $username
         ]);
 
-        if( $findUser && isset($password)){
+        if ($findUser && isset($password)){
             try {
                 if (password_verify($password, $findUser->password)) {
                     $data = json_encode(array(
@@ -269,33 +270,22 @@ class User {
                     //return $this->returnValue("",'true');
                 }   
                 else 
-                    return $this->returnValue("",'false');
+                    return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in update user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in update user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in update user \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             };
         } else 
-            return $this->returnValue("",'false');
-    }
-
-    private function returnValue($result, $value){
-        if ($value==='true')
-            return json_encode(array(
-                'data' => json_encode($result),
-                'success' => true
-                )
-            );
-        else 
-            return json_encode(array('success' => false));
+            return $this->generalFunctions->returnValue("",'false');
     }
 }
 ?>

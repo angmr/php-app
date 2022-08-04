@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
 class Announcement {
 
     protected $collection;
+    protected $generalFunctions;
 
     public function __construct($connection) {
         try {
@@ -38,23 +39,23 @@ class Announcement {
     public function showAnnouncements() {
         try {
             $result = $this->collection->find()->toArray();
-            if (count($result)>0):
+            if (count($result) > 0):
                 return json_encode($result);
             else:
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue('false');
             endif;
         }
         catch (MongoDB\Exception\UnsupportedException $e){
             error_log("Problem in find announcements \n".$e);
-            return $this->returnValue('false');
+            return $this->generalFunctions->returnValue('false');
         }
         catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
             error_log("Problem in find announcements \n".$e);
-            return $this->returnValue('false');
+            return $this->generalFunctions->returnValue('false');
         }
         catch (MongoDB\Driver\Exception\RuntimeException $e){
             error_log("Problem in find users \n".$e);
-            return $this->returnValue('false');
+            return $this->generalFunctions->returnValue('false');
         };
     }
 
@@ -93,23 +94,23 @@ class Announcement {
                 if ($result):
                     return json_encode($result);
                 else:
-                    return $this->returnValue('false');
+                    return $this->generalFunctions->returnValue('false');
                 endif;
             }
             catch (MongoDB\Exception\UnsupportedException $e){
                 error_log("Problem in findOne announcement \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue('false');
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in findOne announcement \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue('false');
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in findOne announcement \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue('false');
             }
         } else 
-            return $this->returnValue('false');
+            return $this->generalFunctions->returnValue('false');
     }
 
     /**
@@ -202,24 +203,24 @@ class Announcement {
                 ]);
                 
                 if ($result->getInsertedCount()==1)
-                    return $this->returnValue("",'true');
+                    return $this->generalFunctions->returnValue("",'true');
                 else 
-                    return $this->returnValue("",'false');
+                    return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in insert user announcement \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in insert user announcement \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in insert user announcement \n".$e);
-                return $this->returnValue("",'false');
+                return $this->generalFunctions->returnValue("",'false');
             };
         } else 
-            return $this->returnValue("",'false');
+            return $this->generalFunctions->returnValue("",'false');
     }
 
     /**
@@ -259,28 +260,28 @@ class Announcement {
                     '_id'=>new MongoDB\BSON\ObjectId($id)
                 ]);
                 if ($result->getDeletedCount()==1)
-                    return $this->returnValue('true');
+                    return $this->generalFunctions->returnValue('true');
                 else 
-                    return $this->returnValue('false');
+                    return $this->generalFunctions->returnValue('false');
             }
             catch (MongoDB\Exception\UnsupportedException $e){
                 error_log("Problem in delete announcement \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue('false');
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in delete announcement \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue('false');
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in delete announcement \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue('false');
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in delete announcement \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue('false');
             };
         } else 
-            return $this->returnValue('false');
+            return $this->generalFunctions->returnValue('false');
     }
 
     /**
@@ -381,35 +382,24 @@ class Announcement {
                     ]
                 );
                 if ($result->getModifiedCount()==1)
-                    return $this->returnValue('true');
+                    return $this->generalFunctions->returnValue('true');
                 else 
-                    return $this->returnValue('false');
+                    return $this->generalFunctions->returnValue('false');
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in update announcement \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue('false');
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in update announcement \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue('false');
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in update announcement \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue('false');
             };
         } else 
-            return $this->returnValue('false');
-    }
-
-    private function returnValue($result, $value){
-        if ($value==='true')
-            return json_encode(array(
-                'data' => json_encode($result),
-                'success' => true
-                )
-            );
-        else 
-            return json_encode(array('success' => false));
+            return $this->generalFunctions->returnValue('false');
     }
 }
 ?>

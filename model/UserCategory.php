@@ -8,6 +8,7 @@ use OpenApi\Annotations as OA;
 class UserCategory {
 
     protected $collection;
+    protected $generalFunctions;
 
     public function __construct($connection) {
         try {
@@ -46,7 +47,7 @@ class UserCategory {
 
   
     public function showUsercategory($id) {
-        if( isset( $id )) {
+        if (isset( $id )) {
             try {
                 $result = $this->collection->findOne([
                     '_id'=>new MongoDB\BSON\ObjectId($id)
@@ -78,7 +79,7 @@ class UserCategory {
         $identifier = $data->identifier;
         $name = $data->name;
 
-        if( isset( $identifier ) && isset($name)) {
+        if (isset( $identifier ) && isset($name)) {
             try {
                 $result = $this->collection->insertOne( [ 
                     'identifier' => $identifier,
@@ -143,7 +144,7 @@ class UserCategory {
         $identifier = $data->identifier;
         $name = $data->name;
 
-        if( isset( $id ) && isset( $identifier ) && isset($name)) {
+        if (isset( $id ) && isset( $identifier ) && isset($name)) {
             try {
                 $result = $this->collection->updateOne( 
                     [ '_id' => new MongoDB\BSON\ObjectId($id) ],
@@ -172,17 +173,6 @@ class UserCategory {
             };
         } else 
             return $this->returnValue("",'false');
-    }
-
-    private function returnValue($result, $value){
-        if ($value==='true')
-            return json_encode(array(
-                'data' => json_encode($result),
-                'success' => true
-                )
-            );
-        else 
-            return json_encode(array('success' => false));
     }
 }
 ?>
