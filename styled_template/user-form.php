@@ -62,3 +62,4 @@ $data = json_decode($data['data'], true);
             <input type='hidden' name='id' id='id' value=''>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+<?php include 'footer.php'; ?>
