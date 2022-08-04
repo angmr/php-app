@@ -21,10 +21,10 @@
                                 Χρήστες
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Χρήστες</a></li>
+                                <li><a class="dropdown-item" href="user-form.php">Χρήστες</a></li>
                                 <li><a class="dropdown-item" href="#">Ρόλοι</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Κατηγορία Χρηστών</a></li>
+                                <li><a class="dropdown-item" href="#">Κατηγορίες Χρηστών</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">

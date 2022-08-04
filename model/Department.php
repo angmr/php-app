@@ -49,8 +49,8 @@ class Department {
     public function showDepartments() {
         try {
             $result = $this->collection->find()->toArray();
-            if (count($result)>0):
-                return $this->generalFunctions->returnValue($result,true);
+            if (count($result) > 0):
+                return $this->generalFunctions->returnValue($result, true);
             else:
                 return $this->generalFunctions->returnValue("", false);
             endif;
@@ -96,35 +96,31 @@ class Department {
      * )
      */
     public function showDepartment($id) {
-        if( isset( $id )) {
+        if (isset($id)) {
             try {
                 $result = $this->collection->findOne([
                     '_id'=>new MongoDB\BSON\ObjectId($id)
                 ]);
                 if ($result):
-                    $x = [
-                        'success'=>true,
-                        'data'=>json_encode($result)
-                    ];
-                    return json_encode($x);
+                    return $this->generalFunctions->returnValue($result, true);
                 else:
-                    return $this->returnValue('false');
+                    return $this->generalFunctions->returnValue("", false);
                 endif;
             }
             catch (MongoDB\Exception\UnsupportedException $e){
                 error_log("Problem in find departments \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue("", false);
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in find departments \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue("", false);
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in find departments \n".$e);
-                return $this->returnValue('false');
+                return $this->generalFunctions->returnValue("", false);
             };
         } else 
-            return $this->returnValue('false'); 
+            return $this->generalFunctions->returnValue("", false);
     }
 
     /**
@@ -171,7 +167,6 @@ class Department {
         else:
             $checked = true;
         endif;
-
         $result = $this -> collection -> findOne([
             'name' => $name
         ]);
@@ -191,24 +186,24 @@ class Department {
                     'categories' => [] 
                 ] );
                 if ($result->getInsertedCount()==1)
-                    return $this->generalFunctions->returnValue("",'true');
+                    return $this->generalFunctions->returnValue("", true);
                 else 
-                    return $this->generalFunctions->returnValue("",false);
+                    return $this->generalFunctions->returnValue("", false);
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in insert department \n".$e);
-                return $this->generalFunctions->returnValue("",false);
+                return $this->generalFunctions->returnValue("", false);
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in insert department \n".$e);
-                return $this->generalFunctions->returnValue("",false);
+                return $this->generalFunctions->returnValue("", false);
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in insert department \n".$e);
-                return $this->generalFunctions->returnValue("",false);
+                return $this->generalFunctions->returnValue("", false);
             };
         } else 
-            return $this->generalFunctions->returnValue("",false); 
+            return $this->generalFunctions->returnValue("", false);
     }
 
      /**
@@ -245,7 +240,7 @@ class Department {
         $id = $data->_id;
         $identifier = $data->identifier;
         $name = $data->name;
-        if( isset( $id ) && isset( $identifier ) && isset($name)) {
+        if (isset($id) && isset($identifier) && isset($name)) {
             try {
                 $result = $this->collection->updateOne( 
                     [ '_id' => new MongoDB\BSON\ObjectId($id) ],
@@ -256,24 +251,24 @@ class Department {
                     ]
                 );
                 if ($result->getModifiedCount()==1)
-                    return $this->generalFunctions->returnValue("",'true');
+                    return $this->generalFunctions->returnValue("", true);
                 else 
-                    return $this->generalFunctions->returnValue("",false);
+                    return $this->generalFunctions->returnValue("", false);
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in update department \n".$e);
-                return $this->generalFunctions->returnValue("",false);
+                return $this->generalFunctions->returnValue("", false);
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in update department \n".$e);
-                return $this->generalFunctions->returnValue("",false);
+                return $this->generalFunctions->returnValue("", false);
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in update department \n".$e);
-                return $this->generalFunctions->returnValue("",false);
+                return $this->generalFunctions->returnValue("", false);
             };
         } else 
-            return $this->generalFunctions->returnValue("",false);
+            return $this->generalFunctions->returnValue("", false);
     }
 
      /**
@@ -312,28 +307,28 @@ class Department {
                     '_id'=>new MongoDB\BSON\ObjectId($id)
                 ]);
                 if ($result->getDeletedCount()==1)
-                    return $this->generalFunctions->returnValue("",'true');
+                    return $this->generalFunctions->returnValue("", true);
                 else 
-                    return $this->generalFunctions->returnValue("",false);
+                    return $this->generalFunctions->returnValue("", false);
             }
             catch (MongoDB\Exception\UnsupportedException $e){
                 error_log("Problem in delete department \n".$e);
-                return $this->generalFunctions->returnValue("",false);
+                return $this->generalFunctions->returnValue("", false);
             }
             catch (MongoDB\Driver\Exception\InvalidArgumentException $e){
                 error_log("Problem in delete department \n".$e);
-                return $this->generalFunctions->returnValue("",false);
+                return $this->generalFunctions->returnValue("", false);
             }
             catch (MongoDB\Driver\Exception\BulkWriteException $e){
                 error_log("Problem in delete department \n".$e);
-                return $this->generalFunctions->returnValue("",false);
+                return $this->generalFunctions->returnValue("", false);
             }
             catch (MongoDB\Driver\Exception\RuntimeException $e){
                 error_log("Problem in delete department \n".$e);
-                return $this->generalFunctions->returnValue("",false);
+                return $this->generalFunctions->returnValue("", false);
             };
         } else 
-            return $this->generalFunctions->returnValue("",false);
+            return $this->generalFunctions->returnValue("", false);
     }
 }
 ?>

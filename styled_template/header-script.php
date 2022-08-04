@@ -19,5 +19,6 @@
     $department = new Department($connection);
     $subdepartment = new Subdepartment($connection);
     $categories = new Categories($connection);
+    $user = new User($connection);
     header('Content-Type: text/html; charset=utf-8');
 ?>
