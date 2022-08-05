@@ -133,23 +133,23 @@ $data = json_decode($data['data'], true);
             <div class="mb-3">
                 <label for="category-name" class="form-label">Category name</label>
                 <input type="text" class="form-control" id="category-name" name="category-name" value="<?php echo $category_name; ?>">
-                <span class="text-danger">*<?php echo $identifierErr; ?></span>
+                <span class="text-danger">*<?php echo $category_nameErr; ?></span>
             </div>
             <hr>
             <div class="mb-3">
                 <label for="name" class="form-label">First name</label>
                 <input type="text" class="form-control" id="name" name="name" value="<?php echo $name; ?>">
-                <span class="text-danger">*<?php echo $identifierErr; ?></span>
+                <span class="text-danger">*<?php echo $nameErr; ?></span>
             </div>
             <div class="mb-3">
                 <label for="surname" class="form-label">Surname</label>
                 <input type="text" class="form-control" id="surname" name="surname" value="<?php echo $identifier; ?>">
-                <span class="text-danger">*<?php echo $identifierErr; ?></span>
+                <span class="text-danger">*<?php echo $surnameErr; ?></span>
             </div>
             <div class="mb-3">
                 <label for="user-email" class="form-label">E-mail</label>
                 <input type="text" class="form-control" id="user-email" name="user-email" value="<?php echo $user_email; ?>">
-                <span class="text-danger">*<?php echo $identifierErr; ?></span>
+                <span class="text-danger">*<?php echo $emailErr; ?></span>
             </div>
             <input type='hidden' name='id' id='id' value=''>
             <button type="submit" class="btn btn-primary">Submit</button>
