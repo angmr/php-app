@@ -176,9 +176,9 @@ $data = json_decode($data['data'], true);
                                 echo $value["identifier"]."<br>";
                             }
                         echo "</td>";
-                        echo "<td>".$value['name']."</td>";
-                        echo "<td>".$value['surname']."</td>";
-                        echo "<td>".$value['user-email']."</td>";
+                        echo "<td>".$value['firstname']."</td>";
+                        echo "<td>".$value['lastname']."</td>";
+                        echo "<td>".$value['email']."</td>";
 
                         echo "<td>";
                 ?>      
