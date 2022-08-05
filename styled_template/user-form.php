@@ -124,12 +124,13 @@ $data = json_decode($data['data'], true);
                 <input type="text" class="form-control" id="password" name="password" value="<?php echo $password; ?>">
                 <span class="text-danger">*<?php echo $passwordErr; ?></span>
             </div>
-            <p>User Category</p>
+            <h4>User Category</h4>
             <div class="mb-3">
                 <label for="identifier" class="form-label">Identifier</label>
                 <input type="text" class="form-control" id="identifier" name="identifier" value="<?php echo $identifier; ?>">
                 <span class="text-danger">*<?php echo $identifierErr; ?></span>
             </div>
+            <hr>
             <div class="mb-3">
                 <label for="category-name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="category-name" name="category-name" value="<?php echo $category_name; ?>">
@@ -153,4 +154,42 @@ $data = json_decode($data['data'], true);
             <input type='hidden' name='id' id='id' value=''>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+
+        <hr>
+
+        <table>
+            <tr>
+                <th>Όνομα Χρήστη</th>
+                <th>Κατηγορία</th>
+                <th>Όνομα</th>
+                <th>Επώνυμο</th>
+                <th>Διεύθυνση E-mail</th>
+            </tr>
+            <?php
+                foreach ($data as $value){
+                    echo "<tr>";
+                        echo "<td>".$value['username']."</td>";
+                        echo "<td>";
+                            foreach ($value["user_category"] as $value){
+                                echo $value["category-name"]."<br>";
+                                echo $value["identifier"]."<br>";
+                            }
+                        echo "</td>";
+                        echo "<td>".$value['name']."</td>";
+                        echo "<td>".$value['surname']."</td>";
+                        echo "<td>".$value['user-email']."</td>";
+
+                        echo "<td>";
+                ?>      
+                        <button class="btn btn-primary" onclick="loadForm(<?php echo '\''.$value['_id']['$oid'].'\',\''.$value['name'].'\',\''.$value['identifier'].'\''?>)">Update</button>
+                        <form method="delete" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                            <input type="hidden" name="id" value="<?php echo $value['_id']['$oid']; ?>">
+                            <input class="btn btn-danger" type="submit" name="submit" value="Delete">
+                        </form>
+                <?php 
+                        echo "</td>";
+                    echo "</tr>";
+                }
+            ?>
+        </table>
 <?php include 'footer.php'; ?>
