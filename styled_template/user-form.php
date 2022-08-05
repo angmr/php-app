@@ -124,7 +124,7 @@ $data = json_decode($data['data'], true);
                 <input type="text" class="form-control" id="password" name="password" value="<?php echo $password; ?>">
                 <span class="text-danger">*<?php echo $passwordErr; ?></span>
             </div>
-            <div border=1px>
+            <div class="border">
                 <h4>User Category</h4>
                 <div class="mb-3">
                     <label for="identifier" class="form-label">Identifier</label>
