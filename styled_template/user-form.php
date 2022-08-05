@@ -124,21 +124,20 @@ $data = json_decode($data['data'], true);
                 <input type="text" class="form-control" id="password" name="password" value="<?php echo $password; ?>">
                 <span class="text-danger">*<?php echo $passwordErr; ?></span>
             </div>
-            <div class="border">
-                <h4>User Category</h4>
-                <div class="mb-3">
-                    <label for="identifier" class="form-label">Identifier</label>
-                    <input type="text" class="form-control" id="identifier" name="identifier" value="<?php echo $identifier; ?>">
-                    <span class="text-danger">*<?php echo $identifierErr; ?></span>
-                </div>
-                <div class="mb-3">
-                    <label for="category-name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="category-name" name="category-name" value="<?php echo $category_name; ?>">
-                    <span class="text-danger">*<?php echo $identifierErr; ?></span>
-                </div>
+            <h4>User Category</h4>
+            <div class="mb-3">
+                <label for="identifier" class="form-label">Identifier</label>
+                <input type="text" class="form-control" id="identifier" name="identifier" value="<?php echo $identifier; ?>">
+                <span class="text-danger">*<?php echo $identifierErr; ?></span>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
+                <label for="category-name" class="form-label">Category name</label>
+                <input type="text" class="form-control" id="category-name" name="category-name" value="<?php echo $category_name; ?>">
+                <span class="text-danger">*<?php echo $identifierErr; ?></span>
+            </div>
+            <hr>
+            <div class="mb-3">
+                <label for="name" class="form-label">First name</label>
                 <input type="text" class="form-control" id="name" name="name" value="<?php echo $name; ?>">
                 <span class="text-danger">*<?php echo $identifierErr; ?></span>
             </div>
@@ -161,7 +160,8 @@ $data = json_decode($data['data'], true);
         <table class='table table-striped'>
             <tr>
                 <th>Όνομα Χρήστη</th>
-                <th>Κατηγορία</th>
+                <th>Αναγνωριστικό Κατηγορίας</th>
+                <th>Όνομα Κατηγορίας</th>
                 <th>Όνομα</th>
                 <th>Επώνυμο</th>
                 <th>Διεύθυνση E-mail</th>
