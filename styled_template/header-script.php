@@ -6,6 +6,7 @@
     include dirname(__FILE__,2).'/model/Department.php';
     include dirname(__FILE__,2).'/model/Subdepartment.php';
     include dirname(__FILE__,2).'/model/Categories.php';
+    include dirname(__FILE__,2).'/model/User.php';
 
     // Uncomment for localhost running
     // $dotenv = Dotenv\Dotenv::createImmutable(dirname(__FILE__,2));
