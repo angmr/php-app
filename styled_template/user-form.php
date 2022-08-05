@@ -173,11 +173,15 @@ $data = json_decode($data['data'], true);
 
                         echo "<td>";
                             foreach ($value["user_category"] as $value){
-                                echo $value["name"]."<br>";
                                 echo $value["identifier"]."<br>";
                             }
                         echo "</td>";
-                        
+                        echo "<td>";
+                            foreach ($value["user_category"] as $value){
+                                echo $value["name"]."<br>";
+                            }
+                        echo "</td>";
+
                         echo "<td>".$value['firstname']."</td>";
                         echo "<td>".$value['lastname']."</td>";
                         echo "<td>".$value['email']."</td>";
@@ -195,4 +199,13 @@ $data = json_decode($data['data'], true);
                 }
             ?>
         </table>
+    </div>
+    <script>
+        function loadForm(id, name, identifier){
+            console.log(id, name, identifier);
+            $('#name').val(name);
+            $('#identifier').val(identifier);
+            $('#id').val(id);
+        }
+    </script>
 <?php include 'footer.php'; ?>
