@@ -42,6 +42,7 @@
                 $nameErr = "Invalid name format";
             }
         }
+        
         if (empty($_POST["identifier"])){
             $identifierErr = "Identifier is required";
         } else {
