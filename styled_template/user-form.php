@@ -170,12 +170,14 @@ $data = json_decode($data['data'], true);
                 foreach ($data as $value){
                     echo "<tr>";
                         echo "<td>".$value['username']."</td>";
+
                         echo "<td>";
                             foreach ($value["user_category"] as $value){
-                                echo $value["category-name"]."<br>";
+                                echo $value["name"]."<br>";
                                 echo $value["identifier"]."<br>";
                             }
                         echo "</td>";
+                        
                         echo "<td>".$value['firstname']."</td>";
                         echo "<td>".$value['lastname']."</td>";
                         echo "<td>".$value['email']."</td>";
