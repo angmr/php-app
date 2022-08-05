@@ -124,17 +124,18 @@ $data = json_decode($data['data'], true);
                 <input type="text" class="form-control" id="password" name="password" value="<?php echo $password; ?>">
                 <span class="text-danger">*<?php echo $passwordErr; ?></span>
             </div>
-            <h4>User Category</h4>
-            <div class="mb-3">
-                <label for="identifier" class="form-label">Identifier</label>
-                <input type="text" class="form-control" id="identifier" name="identifier" value="<?php echo $identifier; ?>">
-                <span class="text-danger">*<?php echo $identifierErr; ?></span>
-            </div>
-            <hr>
-            <div class="mb-3">
-                <label for="category-name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="category-name" name="category-name" value="<?php echo $category_name; ?>">
-                <span class="text-danger">*<?php echo $identifierErr; ?></span>
+            <div border=1px>
+                <h4>User Category</h4>
+                <div class="mb-3">
+                    <label for="identifier" class="form-label">Identifier</label>
+                    <input type="text" class="form-control" id="identifier" name="identifier" value="<?php echo $identifier; ?>">
+                    <span class="text-danger">*<?php echo $identifierErr; ?></span>
+                </div>
+                <div class="mb-3">
+                    <label for="category-name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="category-name" name="category-name" value="<?php echo $category_name; ?>">
+                    <span class="text-danger">*<?php echo $identifierErr; ?></span>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
@@ -157,7 +158,7 @@ $data = json_decode($data['data'], true);
 
         <hr>
 
-        <table>
+        <table class='table table-striped'>
             <tr>
                 <th>Όνομα Χρήστη</th>
                 <th>Κατηγορία</th>
