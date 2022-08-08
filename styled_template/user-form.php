@@ -164,13 +164,17 @@ $data = json_decode($data['data'], true);
                 <th>Όνομα Κατηγορίας</th>
                 <th>Όνομα</th>
                 <th>Επώνυμο</th>
-                <th>Διεύθυνση E-mail</th>
+                <th>E-mail</th>
+                <th>Subscriptions</th>
+                <!--<th>Ρόλοι</th>-->
+                <th>Αποστολή e-mail</th>
+                <th>Επιβεβαίωση</th>
+                <th>Διαδικασίες</th>
             </tr>
             <?php
                 foreach ($data as $value){
                     echo "<tr>";
                         echo "<td>".$value['username']."</td>";
-
                         echo "<td>";
                             foreach ($value["user_category"] as $value){
                                 echo $value["identifier"]."<br>";
@@ -181,10 +185,21 @@ $data = json_decode($data['data'], true);
                                 echo $value["name"]."<br>";
                             }
                         echo "</td>";
-
                         echo "<td>".$value['firstname']."</td>";
                         echo "<td>".$value['lastname']."</td>";
                         echo "<td>".$value['email']."</td>";
+                        echo "<td>";
+                            foreach ($value["subscription_list"] as $value){
+                                echo $value["_id"]."<br>";
+                            }
+                        echo "</td>";
+                        //echo "<td>";
+                            //foreach ($value["roles"] as $value){
+                                //echo $value["name"]."<br>";
+                            //}
+                        //echo "</td>";
+                        echo "<td>".$value['send_email']."</td>";
+                        echo "<td>".$value['verified']."</td>";
 
                         echo "<td>";
                 ?>      
