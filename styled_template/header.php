@@ -24,7 +24,7 @@
                                 <li><a class="dropdown-item" href="user-form.php">Χρήστες</a></li>
                                 <li><a class="dropdown-item" href="#">Ρόλοι</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Κατηγορίες Χρηστών</a></li>
+                                <li><a class="dropdown-item" href="user_category-form.php">Κατηγορίες Χρηστών</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">

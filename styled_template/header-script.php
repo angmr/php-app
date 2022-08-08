@@ -7,6 +7,7 @@
     include dirname(__FILE__,2).'/model/Subdepartment.php';
     include dirname(__FILE__,2).'/model/Categories.php';
     include dirname(__FILE__,2).'/model/User.php';
+    include dirname(__FILE__,2).'model/UserCategory.php';
 
     // Uncomment for localhost running
     // $dotenv = Dotenv\Dotenv::createImmutable(dirname(__FILE__,2));
@@ -21,5 +22,6 @@
     $subdepartment = new Subdepartment($connection);
     $categories = new Categories($connection);
     $user = new User($connection);
+    $user_category = new UserCategory($connection);
     header('Content-Type: text/html; charset=utf-8');
 ?>

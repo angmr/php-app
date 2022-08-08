@@ -174,6 +174,7 @@ $data = json_decode($data['data'], true);
                 <input class="form-check-input" type="checkbox" value="<?php echo $verified;?>" id="verified", name="verified>
                 <label class="form-check-label" for="verified">Επιβεβαίωση</label>
             </div>
+            <br>
             <input type='hidden' name='id' id='id' value=''>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
