@@ -92,9 +92,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $result = saveUser($data);
 
     }
-
-    
 }
+
+if ($_SERVER['REQUEST_METHOD'] == "GET"){
+        if (isset($_GET['id']) && !empty($_GET['id'])){
+            $id = $_GET['id'];
+            $result = deleteUser($id);
+        }
+    }
 
 $data = json_decode($user -> showUsers(), true);
 $data = json_decode($data['data'], true);
