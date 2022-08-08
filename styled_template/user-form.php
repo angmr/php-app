@@ -166,13 +166,13 @@ $data = json_decode($data['data'], true);
                 <label for="roles" class="form-label">Ρόλοι</label>
                 <input type="text" class="form-control" id="roles" name="roles" value="<?php echo $roles; ?>">
             </div>
-            <div>
-                <label for="send_email" class="form-label">Αποστολή E-mail</label>
-                <input type="checkbox" class="form-control" id="send_email" name="send_email" value="<?php echo $send_email; ?>">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="<?php echo $send_email;?>" id="send_email" name="send_email">
+                <label class="form-check-label" for="send_email">Αποστολή E-mail</label>
             </div>
-            <div>
-                <label for="verified" class="form-label">Επιβεβαίωση</label>
-                <input type="checkbox" class="form-control" id="verified" name="verified" value="<?php echo $verified; ?>">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="<?php echo $verified;?>" id="verified", name="verified>
+                <label class="form-check-label" for="verified">Επιβεβαίωση</label>
             </div>
             <input type='hidden' name='id' id='id' value=''>
             <button type="submit" class="btn btn-primary">Submit</button>
