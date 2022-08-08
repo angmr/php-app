@@ -128,7 +128,7 @@ $data = json_decode($data['data'], true);
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="text" class="form-control" id="password" name="password" value="<?php echo $password; ?>">
+                <input type="password" class="form-control" id="password" name="password" value="<?php echo $password; ?>">
                 <span class="text-danger">*<?php echo $passwordErr; ?></span>
             </div>
             <h4>User Category</h4>
@@ -155,8 +155,24 @@ $data = json_decode($data['data'], true);
             </div>
             <div class="mb-3">
                 <label for="user-email" class="form-label">E-mail</label>
-                <input type="text" class="form-control" id="user-email" name="user-email" value="<?php echo $user_email; ?>">
+                <input type="email" class="form-control" id="user-email" name="user-email" value="<?php echo $user_email; ?>">
                 <span class="text-danger">*<?php echo $emailErr; ?></span>
+            </div>
+            <div class="mb-3">
+                <label for="subs" class="form-label">Subscriptions</label>
+                <input type="text" class="form-control" id="subs" name="subs" value="<?php echo $subscriptions; ?>">
+            </div>
+            <div class="mb-3">
+                <label for="roles" class="form-label">Ρόλοι</label>
+                <input type="text" class="form-control" id="roles" name="roles" value="<?php echo $roles; ?>">
+            </div>
+            <div class="mb-3">
+                <label for="send_email" class="form-label">Αποστολή E-mail</label>
+                <input type="checkbox" class="form-control" id="send_email" name="send_email" value="<?php echo $send_email; ?>">
+            </div>
+            <div class="mb-3">
+                <label for="verified" class="form-label">Επιβεβαίωση</label>
+                <input type="checkbox" class="form-control" id="verified" name="verified" value="<?php echo $verified; ?>">
             </div>
             <input type='hidden' name='id' id='id' value=''>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -173,7 +189,7 @@ $data = json_decode($data['data'], true);
                 <th>Επώνυμο</th>
                 <th>E-mail</th>
                 <th>Subscriptions</th>
-                <!--<th>Ρόλοι</th>-->
+                <th>Ρόλοι</th>
                 <th>Αποστολή e-mail</th>
                 <th>Επιβεβαίωση</th>
                 <th>Διαδικασίες</th>
@@ -200,11 +216,11 @@ $data = json_decode($data['data'], true);
                                 echo $value["_id"]."<br>";
                             }
                         echo "</td>";
-                        //echo "<td>";
-                            //foreach ($value["roles"] as $value){
-                                //echo $value["name"]."<br>";
-                            //}
-                        //echo "</td>";
+                        echo "<td>";
+                            foreach ($value["roles"] as $value){
+                                echo $value["name"]."<br>";
+                            }
+                        echo "</td>";
                         echo "<td>".$value['send_email']."</td>";
                         echo "<td>".$value['verified']."</td>";
 
