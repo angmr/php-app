@@ -92,6 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $result = saveUser($data);
 
     }
+
+    
 }
 
 $data = json_decode($user -> showUsers(), true);
@@ -203,7 +205,13 @@ $data = json_decode($data['data'], true);
 
                         echo "<td>";
                 ?>      
-                        <button class="btn btn-primary" onclick="loadForm(<?php echo '\''.$value['_id']['$oid'].'\',\''.$value['name'].'\',\''.$value['identifier'].'\''?>)">Update</button>
+                        <button 
+                            class="btn btn-primary" 
+                            onclick="loadForm(
+                                <?php echo '\''.$value['username'].'\',\''.$value['identifier'].'\',\''.$value['name'].'\',\''.$value['firstname'].'\',\''.$value['lastname'].'\',\''.$value['email'].'\''?>
+                                )">Update
+                        </button>
+
                         <form method="delete" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                             <input type="hidden" name="id" value="<?php echo $value['_id']['$oid']; ?>">
                             <input class="btn btn-danger" type="submit" name="submit" value="Delete">
@@ -216,11 +224,14 @@ $data = json_decode($data['data'], true);
         </table>
     </div>
     <script>
-        function loadForm(id, name, identifier){
-            console.log(id, name, identifier);
-            $('#name').val(name);
+        function loadForm(username, identifier, name, firstname, lastname, email){
+            console.log(username, identifier, name, firstname, lastname, email);
+            $('#username').val(username);
             $('#identifier').val(identifier);
-            $('#id').val(id);
+            $('#name').val(name);
+            $('#firstname').val(firstname);
+            $('#lastname').val(lastname);
+            $('#email').val(email);
         }
     </script>
 <?php include 'footer.php'; ?>
