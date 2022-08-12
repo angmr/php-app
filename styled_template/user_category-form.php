@@ -125,7 +125,6 @@
             <tr>
                 <th>Αναγνωριστικό Κατηγορίας</th>
                 <th>Όνομα Κατηγορίας</th>
-                <th>Χρήστες</th>
                 <th>Διαδικασίες</th>
             </tr>
             <?php
@@ -133,12 +132,6 @@
                     echo "<tr>";
                         echo "<td>".$value['identifier']."</td>";
                         echo "<td>".$value['name']."</td>";
-                        echo "<td>";
-                            foreach ($value["users"] as $value){
-                                echo $value["username"]."<br>";
-                                echo $value["identifier"]."<br>";
-                            }
-                        echo "</td>";
                         echo "<td>";
                 ?>      
                         <button class="btn btn-primary" onclick="loadForm(<?php echo '\''.$value['_id']['$oid'].'\',\''.$value['name'].'\',\''.$value['identifier'].'\''?>)">Update</button>
