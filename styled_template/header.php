@@ -22,7 +22,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="user-form.php">Χρήστες</a></li>
-                                <li><a class="dropdown-item" href="#">Ρόλοι</a></li>
+                                <li><a class="dropdown-item" href="user_role-form.php">Ρόλοι</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="user_category-form.php">Κατηγορίες Χρηστών</a></li>
                             </ul>

@@ -32,5 +32,10 @@
             $collection = $this -> database -> announcement;
             return $collection;
         }
+
+        public function connect_to_user_roles(){
+            $collection = $this -> database -> user_roles;
+            return $collection;
+        }
     }
 ?>

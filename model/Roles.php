@@ -24,7 +24,7 @@ class Roles {
     }
     
     public function showRoles($id) {
-        if( isset( $id )) {
+        if (isset($id)) {
             try {
                 $result = $this->collection->findOne(
                     [ '_id'=>new MongoDB\BSON\ObjectId($id) ],
@@ -60,7 +60,7 @@ class Roles {
         $permission = $data->permission;
         $authorizations = $data->authorizations;
         
-        if( isset( $id ) && isset($permission) && isset($authorizations)) {
+        if(isset($id) && isset($permission) && isset($authorizations)) {
             try {
                 $result = $this->collection->updateOne( 
                     [ '_id' => new MongoDB\BSON\ObjectId($id) ],
@@ -97,8 +97,8 @@ class Roles {
     }
 
     
-    public function deleteRoles($id,$roleid) {
-        if( isset( $id ) && isset($roleid)) {
+    public function deleteRoles($id, $roleid) {
+        if(isset($id) && isset($roleid)) {
             try {
                 $result = $this->collection->updateOne( 
                     [ '_id' => new MongoDB\BSON\ObjectId($id) ],
