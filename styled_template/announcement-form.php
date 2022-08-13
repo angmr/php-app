@@ -136,7 +136,7 @@
             </div>
             <div class="mb-3">
                 <label for="category_name" class="form-label">Message</label>
-                <input type="text" class="form-control" id="category_name" name="category_name" value="<?php echo $category_name; ?>">
+                <input type="textfiled" class="form-control" id="category_name" name="category_name" value="<?php echo $category_name; ?>">
                 <span class="text-danger">*<?php echo $msgErr; ?></span>
             </div>
             <div class="mb-3">
