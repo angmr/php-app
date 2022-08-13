@@ -43,7 +43,7 @@
                                 Ανακοινώσεις
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Ανακοινώσεις</a></li>
+                                <li><a class="dropdown-item" href="announcement-form.php">Ανακοινώσεις</a></li>
                                 <li><a class="dropdown-item" href="#">Εγγραφή σε λίστα</a></li>
                             </ul>
                         </li>
