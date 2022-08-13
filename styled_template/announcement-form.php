@@ -151,7 +151,6 @@
             </div>
             <div class="mb-3">
                 <label for="attachment" class="form-label">Attachment</label>
-                <input type="file" id="myFile" name="filename">
                 <input type="file" class="form-control" id="attachmentFile" name="filename" value="<?php echo $file_name; ?>">
             </div>
 
