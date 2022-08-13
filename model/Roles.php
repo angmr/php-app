@@ -14,12 +14,12 @@ class Roles {
 
     public function __construct($connection) {
         try {
-            $this->collection = $connection->connect_to_user();
-            error_log("Connection to collection User");
+            $this->collection = $connection->connect_to_user_roles();
+            error_log("Connection to collection user_roles");
             $this -> generalFunctions = new GeneralFunctions();
         }
         catch (MongoDB\Driver\Exception\ConnectionTimeoutException $e) {
-            error_log("Problem in connection with collection User".$e);
+            error_log("Problem in connection with collection user_roles".$e);
         }
     }
     
