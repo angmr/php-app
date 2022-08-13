@@ -24,8 +24,10 @@
         return $result;
     }
 
-    $nameErr = $identifierErr = "";
-    $name = $identifier = "";
+    $nameErr = "";
+    $passwordErr = "";
+    $textErr = "";
+    $dateErr = "";
 
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -108,15 +110,51 @@
 
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <div class="mb-3">
-                <label for="identifier" class="form-label">Identifier</label>
-                <input type="text" class="form-control" id="identifier" name="identifier" aria-describedby="emailHelp" value="<?php echo $identifier; ?>">
-                <span class="text-danger">*<?php echo $identifierErr; ?></span>
+                <label for="department_name" class="form-label">Department Name</label>
+                <input type="text" class="form-control" id="department-name" name="department-name" value="<?php echo $department_name; ?>">
+                <span class="text-danger">*<?php echo $depNameErr; ?></span>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="<?php echo $name; ?>">
-                <span class="text-danger">*<?php echo $nameErr; ?></span>
+                <label for="subdepartment_name" class="form-label">Subdepartment Name</label>
+                <input type="text" class="form-control" id="subdepartment_name" name="subdepartment_name" value="<?php echo $subdepartment_name; ?>">
+                <span class="text-danger">*<?php echo $subDepNameErr; ?></span>
             </div>
+            <div class="mb-3">
+                <label for="category_name" class="form-label">Category Name</label>
+                <input type="text" class="form-control" id="category_name" name="category_name" value="<?php echo $category_name; ?>">
+                <span class="text-danger">*<?php echo $catNameErr; ?></span>
+            </div>
+            <div class="mb-3">
+                <label for="category_name" class="form-label">Password</label>
+                <input type="text" class="form-control" id="category_name" name="category_name" value="<?php echo $category_name; ?>">
+                <span class="text-danger">*<?php echo $passwordErr; ?></span>
+            </div>
+            <div class="mb-3">
+                <label for="category_name" class="form-label">Subject</label>
+                <input type="text" class="form-control" id="category_name" name="category_name" value="<?php echo $category_name; ?>">
+                <span class="text-danger">*<?php echo $subjectErr; ?></span>
+            </div>
+            <div class="mb-3">
+                <label for="category_name" class="form-label">Message</label>
+                <input type="text" class="form-control" id="category_name" name="category_name" value="<?php echo $category_name; ?>">
+                <span class="text-danger">*<?php echo $msgErr; ?></span>
+            </div>
+            <div class="mb-3">
+                <label for="category_name" class="form-label">Start</label>
+                <input type="text" class="form-control" id="category_name" name="category_name" value="<?php echo $category_name; ?>">
+                <span class="text-danger">*<?php echo $dateErr; ?></span>
+            </div>
+            <div class="mb-3">
+                <label for="finish" class="form-label">Finish</label>
+                <input type="date" class="form-control" id="finish" name="finish" value="<?php echo $finish; ?>">
+                <span class="text-danger">*<?php echo $dateErr; ?></span>
+            </div>
+            <div class="mb-3">
+                <label for="attachment" class="form-label">Attachment</label>
+                <input type="file" id="myFile" name="filename">
+                <input type="file" class="form-control" id="attachmentFile" name="filename" value="<?php echo $file_name; ?>">
+            </div>
+
             <input type='hidden' name='id' id='id' value=''>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
