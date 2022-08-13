@@ -141,13 +141,12 @@
             </div>
             <div class="mb-3">
                 <label for="category_name" class="form-label">Start</label>
-                <input type="text" class="form-control" id="category_name" name="category_name" value="<?php echo $category_name; ?>">
+                <input type="date" class="form-control" id="category_name" name="category_name" value="<?php echo $category_name; ?>">
                 <span class="text-danger">*<?php echo $dateErr; ?></span>
             </div>
             <div class="mb-3">
                 <label for="finish" class="form-label">Finish</label>
                 <input type="date" class="form-control" id="finish" name="finish" value="<?php echo $finish; ?>">
-                <span class="text-danger">*<?php echo $dateErr; ?></span>
             </div>
             <div class="mb-3">
                 <label for="attachment" class="form-label">Attachment</label>
