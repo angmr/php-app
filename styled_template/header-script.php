@@ -10,6 +10,7 @@
     include dirname(__FILE__,2).'/model/UserCategory.php';
     include dirname(__FILE__,2).'/model/Roles.php';
     include dirname(__FILE__,2).'/model/Announcement.php';
+    include dirname(__FILE__,2).'/model/Subscription.php';
 
     // Uncomment for localhost running
     // $dotenv = Dotenv\Dotenv::createImmutable(dirname(__FILE__,2));
@@ -27,6 +28,7 @@
     $user_category = new UserCategory($connection);
     $roles = new Roles($connection);
     $announcement = new Announcement($connection);
+    $subscription = new Subscription($connection);
     
     header('Content-Type: text/html; charset=utf-8');
 ?>

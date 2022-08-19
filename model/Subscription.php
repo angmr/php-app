@@ -22,7 +22,7 @@ class Subscription {
     
     
     public function showSubscription($id) {
-        if( isset( $id )) {
+        if (isset($id)) {
             try {
                 $result = $this->collection->findOne(
                     [ '_id'=>new MongoDB\BSON\ObjectId($id) ],
